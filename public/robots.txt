@@ -1,0 +1,8 @@
+# Bütün axtarış motorlarına müraciət edir
+User-agent: *
+
+# Bütün axtarış motorlarına saytın hər yerini skan etməyə icazə verir
+Allow: /
+
+# Sayt xəritəsinin yerini göstərir (domen adınızı yazmağı unutmayın)
+Sitemap: https://www.etalonuniform.az/sitemap.xml
