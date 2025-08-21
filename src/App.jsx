@@ -30,8 +30,12 @@ function App() {
       {/* 1. Əsas Meta Teqlər (React 19 ilə) */}
       <title>Etalon Uniform | Peşəkar İş Geyimləri və Fərdi Qorunma Vasitələri</title>
       <meta name="description" content="Etalon Uniform - Azərbaycanda peşəkar iş geyimləri, təhlükəsizlik ayaqqabıları və fərdi qorunma vasitələrinin (FPV) yerli istehsalı və satışı. Yüksək keyfiyyət və münasib qiymət." />
-      <meta name="keywords" content="iş geyimləri, uniforma, peşəkar geyim, işçi geyimləri, fərdi qorunma vasitələri, təhlükəsizlik ayaqqabısı, yerli istehsal, Etalon Uniform, Баку, рабочая одежда в Баку" />
+      {/* Genişləndirilmiş açar sözlər */}
+      <meta name="keywords" content="iş geyimləri, uniforma, peşəkar geyim, işçi geyimləri, fərdi qorunma vasitələri, təhlükəsizlik ayaqqabısı, xüsusi geyimlər, tibbi uniforma, qoruyucu geyimlər, yerli istehsal, Etalon Uniform, Баку, рабочая одежда в Баку, спецодежда" />
       <link rel="canonical" href="https://etalonuniform.az/" />
+      {/* Əlavə edilmiş SEO teqləri */}
+      <meta name="author" content="Etalon Uniform" />
+      <meta name="robots" content="index, follow" />
 
       {/* 2. Open Graph Teqləri (Facebook, LinkedIn, WhatsApp və s. üçün) */}
       <meta property="og:title" content="Etalon Uniform | Peşəkar İş Geyimləri və Fərdi Qorunma" />
