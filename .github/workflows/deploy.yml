@@ -1,0 +1,66 @@
+# Workflow-un adı (GitHub Actions panelində görünəcək ad)
+name: Deploy Etalon Uniform to Hostinger
+
+# Bu workflow-un nə zaman işə düşəcəyini təyin edir.
+# Yalnız "main" adlı branch-a birbaşa və ya pull request vasitəsilə kod əlavə edildikdə (push) işə düşəcək.
+on:
+  push:
+    branches:
+      - main  # Əgər sizin əsas branch-ınız "master"-dırsa, bunu "master" olaraq dəyişin
+
+# Workflow-un görəcəyi işləri (jobs) təyin edir.
+jobs:
+  # "build-and-deploy" adında bir iş yaradırıq. Adı istənilən ola bilər.
+  build-and-deploy:
+    # Bu işin hansı virtual maşın mühitində görüləcəyini seçirik.
+    # "ubuntu-latest" ən çox istifadə olunan və stabil versiyadır.
+    runs-on: ubuntu-latest
+
+    # İşin addımlarını (steps) təyin edirik. Bu addımlar ardıcıl olaraq yerinə yetiriləcək.
+    steps:
+      # Addım 1: Repozitoriyadakı kodu virtual maşına köçürür (checkout).
+      # Bu, layihə fayllarını əlçatan edir.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Addım 2: Node.js mühitini qurur. React (Vite) proyektləri üçün bu vacibdir.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Proyektinizə uyğun Node.js versiyasını seçirik. package.json faylınıza uyğun olmalıdır.
+          node-version: '20'
+          # npm paketlərini keşləyərək gələcək deploy-ları sürətləndirir.
+          cache: 'npm'
+
+      # Addım 3: Proyektin asılılıqlarını (dependencies) yükləyir.
+      # Bu, package.json faylındakı bütün paketləri "node_modules" qovluğuna yükləyir.
+      - name: Install dependencies
+        run: npm install
+
+      # Addım 4: Proyektin production (hazır) versiyasını hazırlayır (build edir).
+      # "npm run build" skripti "dist" adlı bir qovluq yaradacaq və bütün optimallaşdırılmış faylları ora yığacaq.
+      - name: Build project
+        run: npm run build
+
+      # Addım 5: Build edilmiş faylları FTP vasitəsilə Hostinger serverinə göndərir.
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          # GitHub Secrets-də yaratdığımız məlumatları burada təhlükəsiz şəkildə istifadə edirik.
+          # ${{ secrets.SECRET_ADI }} sintaksisi ilə onlara müraciət edirik.
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # Hansı qovluqdakı faylları serverə göndərməli?
+          # Bizim "dist" qovluğundakı hər şeyi göndəririk.
+          local-dir: ./dist/
+          
+          # Fayllar serverin hansı qovluğuna yerləşdirilsin?
+          # Hostinger-də bu, adətən "public_html" olur. Əgər fərqlidirsə, dəyişin.
+          # Məsələn: public_html/etalon-uniform/
+          server-dir: public_html/
+          
+          # Bu parametr serverdəki köhnə faylları silərək yalnız yeni faylların qalmasını təmin edir.
+          # Bu, saytınızın həmişə təmiz vəziyyətdə qalmasına kömək edir.
+          cleanup: true
