@@ -6,8 +6,9 @@ function Header() {
   return (
     <div className="header">
       <img src={logo} alt="Etalon Uniform Professional Workwear Logo" />
-      <h1>Etalon Uniform</h1>
-      <p>Peşəkar iş geyimləri və fərdi qorunma vasitələri üzrə ixtisaslaşmış yerli istehsalçı. Sizin işiniz üçün ən yaxşı forma!</p>
+      {/* DƏYİŞİKLİK BURADADIR */}
+      <h1>Etalon Uniform: Peşəkar İş Geyimləri və Uniformalar</h1>
+      <p>Azərbaycanda yüksək keyfiyyətli iş geyimləri, təhlükəsizlik ayaqqabıları və fərdi qorunma vasitələri üzrə ixtisaslaşmış yerli istehsalçı. Sizin işiniz üçün ən yaxşı forma!</p>
       <div className="coming-soon">Tezliklə Xidmətinizdəyik...</div>
     </div>
   );

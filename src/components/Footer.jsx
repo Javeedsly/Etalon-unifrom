@@ -22,9 +22,11 @@ function Footer() {
         <div className="footer-section">
           <h3>Əlaqə</h3>
           <p>
-            <a href="tel:+994552150884">+994 55 215 08 84</a><br />
-            <a href="tel:+994102365071">+994 10 236 50 71</a><br />
-            <a href="mailto:info@etalonuniform.az">info@etalonuniform.az</a>
+            {/* DƏYİŞİKLİKLƏR BURADA BAŞLAYIR */}
+            <a href="tel:+994552150884" title="Bizə zəng edin (mobil)">+994 55 215 08 84</a><br />
+            <a href="tel:+994102365071" title="Bizə zəng edin (şəhər)">+994 10 236 50 71</a><br />
+            <a href="mailto:info@etalonuniform.az" title="E-poçt göndərin">info@etalonuniform.az</a>
+            {/* DƏYİŞİKLİKLƏR BURADA BİTİR */}
           </p>
         </div>
       </div>
