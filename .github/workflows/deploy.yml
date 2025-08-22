@@ -33,9 +33,9 @@ jobs:
           cache: 'npm'
 
       # Addım 3: Proyektin asılılıqlarını (dependencies) yükləyir.
-      # Bu, package.json faylındakı bütün paketləri "node_modules" qovluğuna yükləyir.
+      # "npm ci" əmri CI/CD mühitləri üçün daha sürətli və etibarlıdır.
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # Addım 4: Proyektin production (hazır) versiyasını hazırlayır (build edir).
       # "npm run build" skripti "dist" adlı bir qovluq yaradacaq və bütün optimallaşdırılmış faylları ora yığacaq.
